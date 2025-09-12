@@ -11,6 +11,7 @@ public class UsersController : ControllerBase
 {
     private readonly IRepository<User> _repo;
 
+
     public UsersController(IRepository<User> repo) => _repo = repo;
     
     // GET: /api/users/{id}
@@ -20,13 +21,16 @@ public class UsersController : ControllerBase
         var user = await _repo.GetByIdAsync(id, ct);
         if (user is null) return NotFound();
 
-        var result = new UserDto
-        {
-            Email = user.Email,
-            Name = user.Name
-        };
+        return Ok(user);
 
-        return Ok(result);
+        // Instead of returning user object, we can map it to a dto:
+        //var result = new UserDto
+        //{
+        //    Email = user.Email,
+        //    Name = user.Name
+        //};
+
+        //return Ok(result);
     }
 
     // GET: /api/users?skip=0&take=20
@@ -35,13 +39,7 @@ public class UsersController : ControllerBase
     {
         var users = await _repo.GetAsync(null, skip, take, ct);
 
-        var result = users.Select(u => new UserDto
-        {
-            Email = u.Email,
-            Name = u.Name
-        });
-
-        return Ok(result);
+        return Ok(users);
     }
 
     // POST: /api/users
