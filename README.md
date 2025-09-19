@@ -2,10 +2,11 @@
 
 This project demonstrates how to implement the **Repository Pattern** using **.NET 8 Web API** with **MongoDB**.  
 
+[Read Article](https://medium.com/@unlu-fa/mongodb-c-repository-pattern-made-simple-c14a31281ccf)
 
 ---
 
-## 🐳 Run MongoDB with Docker
+## Run MongoDB with Docker
 
 Start MongoDB using Docker:
 
